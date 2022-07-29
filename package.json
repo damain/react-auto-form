@@ -1,5 +1,5 @@
 {
-  "name": "@damain/auto-form",
+  "name": "@damain/react-auto-form",
   "version": "0.0.1",
   "description": "Forms generated from validation description",
   "main": "dist/cjs/index.js",
