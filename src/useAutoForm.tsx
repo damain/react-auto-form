@@ -1,34 +1,39 @@
-import { FormEvent, useState } from 'react'
+import React, {useState} from 'react'
 import Form from './components/Form'
-import validate from './validators'
+import { Methods } from './validators'
 
-type FormItem = {
-    [key: string]: string
-}
 
-type AFSchema = typeof validate
-function useAutoForm(schema: AFSchema[], initialState: object) {
+
+function useAutoForm(schema: Map<string, Methods>, initialState: object) {
     const [formState, setFormState] = useState<FormItem>({})
-
-    const handleInputChange = (e: FormEvent<HTMLInputElement>) => {
-        setFormState((prev) => {
+    const [schemaData] = useState(() => generateArray(schema))
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormState(prev =>{
             let tempState = { ...prev }
-            tempState[e.currentTarget.name] = e.currentTarget.value
+            tempState[e.target.name] = e.target.value
             return tempState
         })
     }
-
-    let GeneratedContent = schema.map((item) => {
-                return <input type="text" onChange={handleInputChange} />
-            })
-
-    let component = ()=><Form>
-        <>
-            {GeneratedContent}
-        </>
-    </Form>        
-
-    return [component, formState]
+    return [Form, { schemaData, handleInputChange, formState }]
 }
 
 export default useAutoForm
+
+export type FormItem = {
+    [key: string]: string
+}
+
+export type SchemaObject = {
+    key: string
+    value: Methods
+}
+
+// Utils 
+//TODO: maybe break out if it becomes larger
+
+function generateArray (schema: Map<string, Methods>) {
+    console.log('generating array')
+    let content: SchemaObject[] = []
+    schema.forEach((value, key) => content.push({ key, value }))
+    return content
+}

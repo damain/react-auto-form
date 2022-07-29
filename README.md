@@ -29,10 +29,10 @@ af is a chainable object that is used to describe the schema and set other detai
 ### Creating schema
 
 ```js
-const loginSchema = [
-    "username": af.string().min(1,{message: "Please enter a username"}),
-    "password": af.string().isPassword().min(6,"Password should be between 8-12 digits")
-]
+const loginSchema = new Map([
+    ["username", af.string().min(1,{message: "Please enter a username"})],
+    ["password", af.string().isPassword().min(6,"Password should be between 8-12 digits")]
+])
 ```
 
 ### Using hook

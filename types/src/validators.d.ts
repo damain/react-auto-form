@@ -12,14 +12,13 @@ export declare type Validator = {
     inputType: null | string;
     placeholder: null | string;
 };
-export declare type Methods = {
-    min: (val: number, message: string) => Methods;
-    max: (val: number, message: string) => Methods;
-    gt: (val: number, message: string) => Methods;
-    lt: (val: number, message: string) => Methods;
-    label: (val: string) => Methods;
-    inputType: (val: string) => Methods;
+export declare const validate: () => {
+    min: (val: number, message?: string) => any;
+    max: (val: number, message?: string) => any;
+    gt: (val: number, message?: string) => any;
+    lt: (val: number, message?: string) => any;
+    label: (val: string) => any;
+    inputType: (val: string) => any;
     getState: () => Validator;
 };
-export declare const validate: () => Methods;
 export {};

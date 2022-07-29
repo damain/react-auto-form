@@ -14,7 +14,17 @@ export type Validator = {
     placeholder: null | string
 }
 
-const validate = () => {
+export type Methods = {
+    min: (val: number, message: string)=>Methods
+    max: (val: number, message: string)=>Methods
+    gt: (val: number, message: string)=>Methods
+    lt: (val: number, message: string)=>Methods
+    label: (val:string)=>Methods
+    inputType: (val: string)=>Methods
+    getState: ()=>Validator
+}
+
+export const validate = () => {
     let s: Validator = {
         type: null,
         min: null,
@@ -25,8 +35,10 @@ const validate = () => {
         inputType: 'text',
         placeholder: null
     }
-    let methods = {
-        min: (val: number, message: string = '') => {
+   
+
+    let methods:Methods = {
+        min: (val, message) => {
             s.min = { val, message }
             return methods
         },
@@ -54,7 +66,6 @@ const validate = () => {
             return s
         }
     }
+    
     return methods
 }
-
-export default validate
