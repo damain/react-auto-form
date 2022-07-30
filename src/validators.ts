@@ -38,27 +38,27 @@ export const validate = () => {
    
 
     let methods:Methods = {
-        min: (val, message) => {
+        min: (val, message = '') => {
             s.min = { val, message }
             return methods
         },
-        max: (val: number, message: string = '') => {
+        max: (val, message = '') => {
             s.max = { val, message }
             return methods
         },
-        gt: (val: number, message: string = '') => {
+        gt: (val, message = '') => {
             s.gt = { val, message }
             return methods
         },
-        lt: (val: number, message: string = '') => {
+        lt: (val, message = '') => {
             s.lt = { val, message }
             return methods
         },
-        label: (val: string) => {
+        label: (val) => {
             s.label = val
             return methods
         },
-        inputType: (val: string) => {
+        inputType: (val) => {
             s.inputType = val
             return methods
         },
