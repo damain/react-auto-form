@@ -17,7 +17,7 @@
     font-size: smaller;
 }
 
-.afinput__field-error{
+.afinput__field--error{
     color: red;
     border-color: red;
 }

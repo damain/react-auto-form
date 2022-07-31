@@ -44,8 +44,7 @@ const [LoginForm, formProps, resetForm, formState] = useAutoForm(loginSchema, in
 const handleSubmit = (state) => {
     /*
     actions to complete are handled here
-    state is an object that contains the val
-    ues of the input elements inclusive of any hidden form values e.g.
+    state is an object that contains the values of the input elements inclusive of any hidden form values e.g.
     {
         username: "john",
         password: "mypass"
@@ -68,5 +67,7 @@ The inputs are named according to the BEM naming convention as follows
 .afinput\_\_label
 
 .afinput\_\_field
+
+.afinput\_\_field--error
 
 .afinput\_\_errors

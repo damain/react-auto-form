@@ -36,7 +36,7 @@ function Input({ onChange, value, name, fieldValidationObject, errors }: Props) 
     }
 
     function getClasses(){
-        return `afinput__field ${errors.has(fieldValidationObject.key) ? 'afinput__field-error': ''}`
+        return `afinput__field ${errors.has(fieldValidationObject.key) ? 'afinput__field--error': ''}`
     }
 
     switch (fieldType) {
