@@ -12,7 +12,10 @@ function useAutoForm(schema: Schema, initialState: object) {
             return tempState
         })
     }
-    return [Form, {schema, schemaData, handleInputChange, formState }]
+    const resetForm = () =>{
+        setFormState({})
+    }
+    return [Form, {schema, schemaData, handleInputChange, formState}, resetForm]
 }
 
 export default useAutoForm

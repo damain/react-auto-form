@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import { Methods } from './validators';
-declare function useAutoForm(schema: Schema, initialState: object): (typeof Form | {
+declare function useAutoForm(schema: Schema, initialState: object): (typeof Form | (() => void) | {
     schema: Schema;
     schemaData: SchemaObject[];
     handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

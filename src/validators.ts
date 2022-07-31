@@ -12,16 +12,22 @@ export type Validator = {
     label: null | string
     inputType: null | string
     placeholder: null | string
+    isPassword: null | boolean
+    isSubmit: null | boolean
+    isNumber: null | boolean
 }
 
 export type Methods = {
-    min: (val: number, message: string)=>Methods
-    max: (val: number, message: string)=>Methods
-    gt: (val: number, message: string)=>Methods
-    lt: (val: number, message: string)=>Methods
-    label: (val:string)=>Methods
-    inputType: (val: string)=>Methods
-    getState: ()=>Validator
+    min: (val: number, message?: string) => Methods
+    max: (val: number, message?: string) => Methods
+    gt: (val: number, message?: string) => Methods
+    lt: (val: number, message?: string) => Methods
+    label: (val: string) => Methods
+    inputType: (val: string) => Methods
+    getState: () => Validator
+    isPassword: () => Methods
+    isSubmit: () => Methods
+    isNumber: () => Methods
 }
 
 export const validate = () => {
@@ -33,11 +39,13 @@ export const validate = () => {
         lt: null,
         label: null,
         inputType: 'text',
-        placeholder: null
+        placeholder: null,
+        isPassword: null,
+        isSubmit: null,
+        isNumber: null
     }
-   
 
-    let methods:Methods = {
+    let methods: Methods = {
         min: (val, message = '') => {
             s.min = { val, message }
             return methods
@@ -64,8 +72,20 @@ export const validate = () => {
         },
         getState: () => {
             return s
+        },
+        isNumber:()=>{
+            s.isNumber = true
+            return methods
+        },
+        isPassword: () => {
+            s.isPassword = true
+            return methods
+        },
+        isSubmit: () => {
+            s.isSubmit = true
+            return methods
         }
     }
-    
+
     return methods
 }

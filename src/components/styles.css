@@ -1,0 +1,23 @@
+.afinput{
+    padding: .5rem;
+}
+.afinput__field{
+    padding: .3rem;
+    border: 1px solid rgb(80, 80, 80);
+    border-radius: .2rem;
+    margin-top: .1rem;
+    margin-bottom: .1rem;
+}
+.afinput__label{
+    font-weight: 600;
+}
+
+.afinput__error{
+    color: red;
+    font-size: smaller;
+}
+
+.afinput__field-error{
+    color: red;
+    border-color: red;
+}

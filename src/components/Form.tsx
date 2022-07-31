@@ -1,8 +1,9 @@
 import { ChangeEventHandler, FormEventHandler, Fragment, useState } from 'react'
 import { FormItem, Schema, SchemaObject } from '../useAutoForm'
 import { parser } from '../parser'
+import Input from './Input'
 
-type componenetProps = {
+type componentProps = {
     schema: Schema
     schemaData: SchemaObject[]
     handleInputChange: ChangeEventHandler
@@ -15,11 +16,11 @@ function Form({
     handleInputChange,
     formState,
     submitHandler = () => console.log('this form does not have a handler')
-}: componenetProps) {
-    const [errors, setErrors]=useState< Map<string, string[]> >(new Map())
+}: componentProps) {
+    const [errors, setErrors] = useState<Map<string, string[]>>(new Map())
     const handleSubmit: FormEventHandler = (e) => {
         e.preventDefault()
-        
+
         let result = parser(schema, formState).parse()
         setErrors(result.errors)
         console.log(result)
@@ -27,16 +28,20 @@ function Form({
             submitHandler(formState)
         }
     }
+    
     return (
         <form onSubmit={handleSubmit}>
             {schemaData.map((obj) => (
                 <Fragment key={obj.key}>
-                    <label htmlFor={obj.key}>{obj.key}</label>
-                    <input type="text" name={obj.key} onChange={handleInputChange} value={formState[obj.key] ? formState[obj.key] : ''} />
-                    {errors.has(obj.key) && errors.get(obj.key)?.map(error=>(<div>{error}</div>))}
+                    <Input
+                        name={obj.key}
+                        onChange={handleInputChange}
+                        fieldValidationObject={obj}
+                        value={formState[obj.key] ? formState[obj.key] : ''}
+                        errors={errors}
+                    />
                 </Fragment>
             ))}
-            <input type="submit" />
         </form>
     )
 }

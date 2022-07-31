@@ -30,8 +30,8 @@ af is a chainable object that is used to describe the schema and set other detai
 
 ```js
 const loginSchema = new Map([
-    ["username", af.string().min(1,{message: "Please enter a username"})],
-    ["password", af.string().isPassword().min(6,"Password should be between 8-12 digits")]
+    ['username', af.string().min(1, { message: 'Please enter a username' })],
+    ['password', af.string().isPassword().min(6, 'Password should be between 8-12 digits')]
 ])
 ```
 
@@ -40,8 +40,8 @@ const loginSchema = new Map([
 The Api is exposed via a hook potentialy named useAutoForm
 
 ```jsx
-const [LoginForm, formState] = useAutoForm(loginSchema, initialValues)
-const handleSubmit = (state)=>{
+const [LoginForm, formProps, resetForm, formState] = useAutoForm(loginSchema, initialValues)
+const handleSubmit = (state) => {
     /*
     actions to complete are handled here
     state is an object that contains the val
@@ -52,8 +52,21 @@ const handleSubmit = (state)=>{
         hiddenField: "hidden form value"
     }
     */
-
 }
 
-render (<LoginForm onSubmit={handleSubmit}/>)
+return <LoginForm {...formProps} onSubmit={handleSubmit} />
 ```
+
+## Styling inputs
+
+Inputs are generated using regular html input elements and unscoped css that can be overridden.
+
+The inputs are named according to the BEM naming convention as follows
+
+.afinput
+
+.afinput\_\_label
+
+.afinput\_\_field
+
+.afinput\_\_errors
