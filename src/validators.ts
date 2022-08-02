@@ -3,6 +3,11 @@ type numberValue = {
     message: string
 }
 
+type booleanValue = {
+    val: boolean
+    message: string
+}
+
 export type Validator = {
     type: null | string
     min: null | numberValue
@@ -13,8 +18,10 @@ export type Validator = {
     inputType: null | string
     placeholder: null | string
     isPassword: null | boolean
+    isRequired: null | boolean
     isSubmit: null | boolean
     isNumber: null | boolean
+    isEmail: null | booleanValue
 }
 
 export type Methods = {
@@ -26,8 +33,11 @@ export type Methods = {
     inputType: (val: string) => Methods
     getState: () => Validator
     isPassword: () => Methods
+    isRequired: () => Methods
     isSubmit: () => Methods
     isNumber: () => Methods
+    isEmail: (message?: string) => Methods
+    placeholder: (message?:string) => Methods
 }
 
 export const validate = () => {
@@ -41,8 +51,10 @@ export const validate = () => {
         inputType: 'text',
         placeholder: null,
         isPassword: null,
+        isRequired: null,
         isSubmit: null,
-        isNumber: null
+        isNumber: null,
+        isEmail: null
     }
 
     let methods: Methods = {
@@ -81,8 +93,20 @@ export const validate = () => {
             s.isPassword = true
             return methods
         },
+        isRequired: () => {
+            s.isRequired = true
+            return methods
+        },
         isSubmit: () => {
             s.isSubmit = true
+            return methods
+        },
+        isEmail: (message = '')=>{
+            s.isEmail = {val: true, message}
+            return methods
+        },
+        placeholder: (message='')=>{
+            s.placeholder = message
             return methods
         }
     }

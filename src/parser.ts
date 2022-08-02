@@ -69,5 +69,18 @@ function check(validationObj: Methods, value: string | number) {
         }
     }
 
+    if (validationState.isEmail){
+        let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
+        if (typeof value === "string") {
+            if (!value.match(mailformat)){
+                isValid = false
+                let message = validationState.isEmail.message || 'Please enter a valid email'
+                errorArray.push(message)
+            }
+
+        }
+    }
+
     return { errors: errorArray, isValid }
 }

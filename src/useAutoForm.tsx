@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import Form from './components/Form'
 import { Methods } from './validators'
 
+type useAutoFormReturn = [Form: typeof Form, _:{schema: Schema, schemaData: SchemaObject[], handleInputChange: React.ChangeEventHandler, formState: FormItem } , resetForm: Function]
+
 function useAutoForm(schema: Schema, initialState: object) {
     const [formState, setFormState] = useState<FormItem>({})
     const [schemaData] = useState(() => generateArray(schema))
@@ -15,7 +17,8 @@ function useAutoForm(schema: Schema, initialState: object) {
     const resetForm = () =>{
         setFormState({})
     }
-    return [Form, {schema, schemaData, handleInputChange, formState}, resetForm]
+    return [Form, {schema, schemaData, handleInputChange, formState}, resetForm] as useAutoFormReturn
+    // return [Form]
 }
 
 export default useAutoForm

@@ -5,7 +5,7 @@ declare type componentProps = {
     schemaData: SchemaObject[];
     handleInputChange: ChangeEventHandler;
     formState: FormItem;
-    submitHandler: Function;
+    submitHandler: (data: FormItem) => void;
 };
 declare function Form({ schema, schemaData, handleInputChange, formState, submitHandler }: componentProps): JSX.Element;
 export default Form;

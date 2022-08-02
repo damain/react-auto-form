@@ -13,6 +13,8 @@ function Input({ onChange, value, name, fieldValidationObject, errors }: Props) 
     let inputRef = useRef<HTMLInputElement>(null)
     let fieldSchema = fieldValidationObject.value.getState()
     let label = fieldSchema.label || fieldValidationObject.key
+    let required = fieldSchema.isRequired ? true: false
+    let placeHolder = fieldSchema.placeholder || ''
     let input: JSX.Element
     let showLabel = fieldSchema.isSubmit ? false : true
     let showErrors = fieldSchema.isSubmit ? false : true
@@ -20,6 +22,7 @@ function Input({ onChange, value, name, fieldValidationObject, errors }: Props) 
         if (fieldSchema.isPassword) return 'password'
         if (fieldSchema.isSubmit) return 'submit'
         if (fieldSchema.isNumber) return 'number'
+        if (fieldSchema.isEmail?.val) return 'email'
         return 'text'
     }
     let fieldType = getType()
@@ -41,10 +44,10 @@ function Input({ onChange, value, name, fieldValidationObject, errors }: Props) 
 
     switch (fieldType) {
         case 'submit':
-            input = <input ref={inputRef} className={getClasses()} type={fieldType} />
+            input = <input className={getClasses()} aria-label="submit" type={fieldType} value={capitalize(label)}/>
             break
         default:
-            input = <input ref={inputRef} className={getClasses()} type={fieldType} value={value} name={name} onChange={onChange} />
+            input = <input ref={inputRef} className={getClasses()} type={fieldType} value={value} name={name} onChange={onChange} placeholder={placeHolder} required={required}/>
             break
     }
 
@@ -53,7 +56,7 @@ function Input({ onChange, value, name, fieldValidationObject, errors }: Props) 
             {showLabel && (
                 <div className="afinput__label">
                     <label htmlFor={fieldValidationObject.key} onClick={handleLabelClick}>
-                        {capitalize(label)}
+                        {capitalize(label)} { required && <span className="afinput__label--required">*</span>}
                     </label>
                 </div>
             )}

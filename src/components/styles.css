@@ -8,8 +8,14 @@
     margin-top: .1rem;
     margin-bottom: .1rem;
 }
+.afinput__field:invalid{
+    border-color: red;
+}
 .afinput__label{
     font-weight: 600;
+}
+.afinput__label--required{
+    color: red;
 }
 
 .afinput__error{

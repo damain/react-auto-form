@@ -8,14 +8,14 @@ type componentProps = {
     schemaData: SchemaObject[]
     handleInputChange: ChangeEventHandler
     formState: FormItem
-    submitHandler: Function
+    submitHandler: (data:FormItem)=>void
 }
 function Form({
     schema,
     schemaData,
     handleInputChange,
     formState,
-    submitHandler = () => console.log('this form does not have a handler')
+    submitHandler = (data) => console.log('this form does not have a handler')
 }: componentProps) {
     const [errors, setErrors] = useState<Map<string, string[]>>(new Map())
     const handleSubmit: FormEventHandler = (e) => {

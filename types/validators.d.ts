@@ -2,6 +2,10 @@ declare type numberValue = {
     val: number;
     message: string;
 };
+declare type booleanValue = {
+    val: boolean;
+    message: string;
+};
 export declare type Validator = {
     type: null | string;
     min: null | numberValue;
@@ -12,8 +16,10 @@ export declare type Validator = {
     inputType: null | string;
     placeholder: null | string;
     isPassword: null | boolean;
+    isRequired: null | boolean;
     isSubmit: null | boolean;
     isNumber: null | boolean;
+    isEmail: null | booleanValue;
 };
 export declare type Methods = {
     min: (val: number, message?: string) => Methods;
@@ -24,8 +30,11 @@ export declare type Methods = {
     inputType: (val: string) => Methods;
     getState: () => Validator;
     isPassword: () => Methods;
+    isRequired: () => Methods;
     isSubmit: () => Methods;
     isNumber: () => Methods;
+    isEmail: (message?: string) => Methods;
+    placeholder: (message?: string) => Methods;
 };
 export declare const validate: () => Methods;
 export {};
