@@ -66,6 +66,8 @@ The inputs are named according to the BEM naming convention as follows
 
 .afinput\_\_label
 
+.afinput\_\_label--required 
+
 .afinput\_\_field
 
 .afinput\_\_field--error
