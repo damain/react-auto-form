@@ -71,3 +71,23 @@ The inputs are named according to the BEM naming convention as follows
 .afinput\_\_field--error
 
 .afinput\_\_errors
+
+## Validation Methods
+This may be best described by showing the type definition
+```ts
+export type Methods = {
+    min: (val: number, message?: string) => Methods // sets the min amount for number inputs and the minLength for text inputs
+    max: (val: number, message?: string) => Methods // sets the max amount for number inputs and the maxLength for text inputs
+    gt: (val: number, message?: string) => Methods
+    lt: (val: number, message?: string) => Methods // 
+    label: (val: string) => Methods // Sets the label text, if not included the fieldName/key is used instead
+    inputType: (val: string) => Methods //intended to set the typescript type of the inputs data
+    getState: () => Validator // returns the underlying validation object 
+    isPassword: () => Methods // makes the input a passowrd field
+    isRequired: () => Methods // shows * next to label and sets the required input attribute to true
+    isSubmit: () => Methods // makes the input a submit button
+    isNumber: () => Methods // make the input a number field
+    isEmail: (message?: string) => Methods // makes the input an email field
+    placeholder: (message?:string) => Methods // Sets the input placeholder text
+}
+```

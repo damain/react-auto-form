@@ -25,19 +25,19 @@ export type Validator = {
 }
 
 export type Methods = {
-    min: (val: number, message?: string) => Methods
-    max: (val: number, message?: string) => Methods
+    min: (val: number, message?: string) => Methods // sets the min amount for number inputs and the minLength for text inputs
+    max: (val: number, message?: string) => Methods // sets the max amount for number inputs and the maxLength for text inputs
     gt: (val: number, message?: string) => Methods
-    lt: (val: number, message?: string) => Methods
-    label: (val: string) => Methods
-    inputType: (val: string) => Methods
-    getState: () => Validator
-    isPassword: () => Methods
-    isRequired: () => Methods
-    isSubmit: () => Methods
-    isNumber: () => Methods
-    isEmail: (message?: string) => Methods
-    placeholder: (message?:string) => Methods
+    lt: (val: number, message?: string) => Methods // 
+    label: (val: string) => Methods // Sets the label text, if not included the fieldName/key is used instead
+    inputType: (val: string) => Methods //intended to set the typescript type of the inputs data
+    getState: () => Validator // returns the underlying validation object 
+    isPassword: () => Methods // makes the input a passowrd field
+    isRequired: () => Methods // shows * next to label and sets the required input attribute to true
+    isSubmit: () => Methods // makes the input a submit button
+    isNumber: () => Methods // make the input a number field
+    isEmail: (message?: string) => Methods // makes the input an email field
+    placeholder: (message?:string) => Methods // Sets the input placeholder text
 }
 
 export const validate = () => {
